@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Belajar JavaScript</title>
+    <script>
+        function myFunction() {
+            document.getElementById("paragraf").innerHTML = "Hypertext Markup Language";
+            //akses dokumen html pake method getelementById digunakan untuk akses file html ini kemudian cari elemen yang id nya "paragraf"
+            //kemudian akses innerHTML nya. innerHTML itu properti yang digunakan di JavaScript untuk mengakses atau mengubah konten HTML dari sebuah elemen dalam dokumen.
+            //di sini innerHTML nya digunain buat dapetin isi HTML dari sebuah elemen.
+        }
+    </script>
+</head>
+<body>
+    <p id="paragraf">HTML</p>
+    <button type="button" onclick="myFunction()">Show Abbr</button> //ketika tombolnya diklik maka akan menjalankan fungsi myFunction
+</body>
+</html>

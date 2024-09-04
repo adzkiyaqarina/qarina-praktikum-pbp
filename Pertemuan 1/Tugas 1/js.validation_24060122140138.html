@@ -1,0 +1,216 @@
+<!-- Nama : Adzkiya Qarina Salsabila
+ 	 NIM  : 24060122140138
+	 Lab  : A1 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Tambah Data Produk</title>
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Form Tambah Data Produk</h2>
+        <form id="productForm" onsubmit="return validateForm()">
+            <!-- Nama produk -->
+            <label for="namaProduk">Nama Produk:</label><br>
+            <input type="text" id="namaProduk" name="namaProduk" maxlength="30" required><br><br>
+
+            <!-- Deskripsi -->
+            <label for="deskripsi">Deskripsi:</label><br>
+            <textarea id="deskripsi" name="deskripsi" maxlength="100" required></textarea><br><br>
+
+            <!-- Kategori -->
+            <label for="kategori">Kategori:</label><br>
+            <select id="kategori" name="kategori" required onchange="updateSubKategori()">
+                <option value="">--Pilih Kategori--</option>
+                <option value="Baju">Baju</option>
+                <option value="Elektronik">Elektronik</option>
+                <option value="Alat Tulis">Alat Tulis</option>
+            </select><br><br>
+
+            <!-- Sub kategori -->
+            <label for="subKategori">Sub Kategori:</label><br>
+            <select id="subKategori" name="subKategori">
+                <option value="" disabled selected>--Pilih Sub Kategori--</option>
+            </select><br><br>
+
+            <!-- Harga satuan -->
+            <label for="hargaSatuan">Harga Satuan:</label><br>
+            <input type="text" id="hargaSatuan" name="hargaSatuan"><br><br>
+
+            <!-- Harga grosir pilihan -->
+            <label for="grosir">Grosir:</label><br>
+            <input type="radio" id="grosirYa" name="grosir" value="Ya" onclick="document.getElementById('hargaGrosir').disabled = false;"> Ya
+            <input type="radio" id="grosirTidak" name="grosir" value="Tidak" onclick="document.getElementById('hargaGrosir').disabled = true;"> Tidak<br><br>
+
+            <!-- Harga grosir input -->
+            <label for="hargaGrosir">Harga Grosir:</label><br>
+            <input type="text" id="hargaGrosir" name="hargaGrosir" disabled><br><br>
+
+            <!-- Jasa kirim -->
+            <div class="form-group">
+                <label for="jasaKirim">Jasa Kirim:</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="jasaKirim" value="JNE"> JNE</label>
+                    <label><input type="checkbox" name="jasaKirim" value="TIKI"> TIKI</label>
+                    <label><input type="checkbox" name="jasaKirim" value="SiCepat"> SiCepat</label>
+                    <label><input type="checkbox" name="jasaKirim" value="Ninja Express"> Ninja Express</label>
+                    <label><input type="checkbox" name="jasaKirim" value="Wahana"> Wahana</label>
+                </div>
+            </div>            
+
+            <!-- Captcha -->
+            <label for="captcha">Captcha:</label><br>
+            <input type="text" id="captchaCode" disabled>
+            <input type="text" id="captchaInput" name="captchaInput"><br><br>
+
+            <!-- Submit Reset -->
+            <div class="form-actions">
+                <input type="submit" value="Submit">
+                <input type="reset" value="Reset">
+            </div>
+        </form>
+
+        <p class="error" id="errorMsg"></p>
+    </div>
+
+    <script src="js/validation_24060122140138.js"></script>
+</body>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow-y: scroll;
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        #namaProduk, #kategori, #subKategori, #hargaSatuan, #hargaGrosir  {
+            width: 100%;
+            height: 20px;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: normal;
+            color: #333;
+        }
+
+        .form-group input[type="text"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+            min-height: 40px;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 10px;
+            margin-left: 5px;
+        }
+
+        .checkbox-group {
+            display: normal;
+            flex-direction: column;
+        }
+
+        .checkbox-group label {
+            margin-bottom: 5px;
+        }
+
+        /* Submit and Reset Buttons */
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 48%;
+        }
+
+        input[type="submit"]:hover,
+        input[type="reset"]:hover {
+            background-color: #0056b3;
+        }
+
+        input[type="reset"] {
+            background-color: #6c757d;
+        }
+
+        input[type="reset"]:hover {
+            background-color: #5a6268;
+        }
+
+        /* Error Message */
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 15px;
+            }
+
+            input[type="submit"],
+            input[type="reset"] {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            input[type="submit"]:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+</style>
+</html>
